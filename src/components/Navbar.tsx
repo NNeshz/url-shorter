@@ -13,8 +13,8 @@ const Navbar = async () => {
   return (
     <nav className="w-full bg-zinc-100">
       <MaxWidthWrapper className="flex items-center justify-between py-2">
-        <Link href={"/"}>
-          <LucideLink className="font-black w-6" />
+        <Link href={"/"} className="flex gap-x-3 font-bold text-xl">
+          <LucideLink className="font-black w-6" /> Short URL
         </Link>
         {session === null ? (
           <Link
