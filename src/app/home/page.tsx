@@ -7,7 +7,6 @@ import Link from "next/link";
 
 const Page = async () => {
   const session = await getServerSession(authOptions);
-  console.log(session);
 
   if (!session) {
     return (
