@@ -15,7 +15,7 @@ const Page = async () => {
 
   return <div className="w-full h-screen flex flex-col justify-center items-center gap-y-2">
     <h1 className="text-5xl font-bold">Short Link</h1>
-    <FormLink /> 
+    <FormLink userMail={session?.user.email!} /> 
     <ListLinks />
   </div>;
 };

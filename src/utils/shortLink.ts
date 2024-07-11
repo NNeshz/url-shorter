@@ -1,4 +1,4 @@
-export function shortLink() {
+export function shortLink() : string {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     let result = '';

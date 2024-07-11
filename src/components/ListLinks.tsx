@@ -1,7 +1,10 @@
+import DisplayLinks from "./DisplayLinks"
+
 const ListLinks = () => {
   return (
-    <div>
-        ListLinks
+    <div className="flex flex-col justify-center">
+        <h3 className="text-xl font-semibold">All your links:</h3>
+        <DisplayLinks />
     </div>
   )
 }
