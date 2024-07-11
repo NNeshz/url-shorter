@@ -55,7 +55,7 @@ const SignInForm = () => {
       console.error("Failed to sign in");
       return;
     } else {
-      router.push("/home");
+      router.push("/");
       router.refresh()
     }
   };

@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
-export async function GET(req: Request) {
+export async function DELETE(req: Request) {
     try {
         const session = await getServerSession(authOptions);
         const user = await db.user.findUnique({
@@ -15,16 +15,27 @@ export async function GET(req: Request) {
             return NextResponse.json({ message: "User not found" }, { status: 404 });
         }
 
-        const links = await db.url.findMany({
+        const { id } = await req.json();
+        const link = await db.url.findUnique({
             where: {
-                userId: user.id
-            },
-            orderBy: {
-                createdAt: "desc"
+                id,
             }
-        })
+        });
+        if (!link) {
+            return NextResponse.json({ message: "Link not found" }, { status: 404 });
+        }
 
-        return NextResponse.json(links);
+        if (link.userId !== user.id) {
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
+
+        await db.url.delete({
+            where: {
+                id,
+            }
+        });
+
+        return NextResponse.json({ message: "Link deleted" });
     } catch (error) {
         return NextResponse.json({ message: (error as Error).message }, { status: 500 });
     }

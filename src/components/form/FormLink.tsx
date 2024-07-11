@@ -12,14 +12,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
 import { useLinksStore } from "@/context/useLinksStore";
+import { useRouter } from "next/navigation";
 
 const urlSchema = z.object({
   url: z.string().url(),
 });
 
-const FormLink = () => {
+const FormLink = ({ isLogged }: { isLogged: boolean }) => {
+  const router = useRouter();
   const createShortLink = useLinksStore((state) => state.createShortLink);
   const form = useForm<z.infer<typeof urlSchema>>({
     resolver: zodResolver(urlSchema),
@@ -33,6 +34,7 @@ const FormLink = () => {
       const response = await createShortLink(data.url);
       if (response?.ok) {
         form.reset();
+        router.refresh();
       }
     } catch (error) {
       console.error("Error Form", error);
@@ -41,9 +43,14 @@ const FormLink = () => {
 
   return (
     <Form {...form}>
+      {!isLogged && (
+        <p className="text-red-500 text-sm">
+          You need to be logged in to use Short URL
+        </p>
+      )}
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex items-center gap-2"
+        className="flex flex-col items-center gap-2"
       >
         <FormField
           control={form.control}
@@ -61,7 +68,9 @@ const FormLink = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Short</Button>
+        <Button type="submit" className="w-full" disabled={isLogged ? false : true}>
+          Short
+        </Button>
       </form>
     </Form>
   );

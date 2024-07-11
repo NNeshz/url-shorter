@@ -61,7 +61,7 @@ const SignUpForm = () => {
 
     if (response.ok) {
       router.refresh()
-      router.push("/home");
+      router.push("/");
     } else {
       console.error("Failed to sign up");
     }
