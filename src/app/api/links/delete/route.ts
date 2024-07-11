@@ -8,7 +8,7 @@ export async function DELETE(req: Request) {
         const session = await getServerSession(authOptions);
         const user = await db.user.findUnique({
             where: {
-                email: session.user.email,
+                email: session?.user.email!,
             }
         });
         if (!user) {

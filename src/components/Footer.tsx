@@ -12,14 +12,14 @@ const Footer = () => {
           </Link>
         </section>
         <section className="flex gap-x-8">
-          <Link href={"/about"} className="text-sm text-zinc-400 hover:text-zinc-600">About</Link>
-          <Link href={"/contact"} className="text-sm text-zinc-400 hover:text-zinc-600">FAQ</Link>
+          <Link href={"#"} className="text-sm text-zinc-400 hover:text-zinc-600">About</Link>
+          <Link href={"#"} className="text-sm text-zinc-400 hover:text-zinc-600">FAQ</Link>
         </section>
         <section className="flex gap-x-2">
-          <Link href={"/"}>
+          <Link href={"https://github.com/NNeshz/url-shorter"}>
             <GithubIcon className="w-5" />
           </Link>
-          <Link href={"/"}>
+          <Link href={"https://www.linkedin.com/in/nneshz/"}>
             <Linkedin className="w-5" />
           </Link>
         </section>
