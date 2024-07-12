@@ -18,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 const registrationSchema = z.object({
   email: z
@@ -60,8 +61,18 @@ const SignUpForm = () => {
     });
 
     if (response.ok) {
-      router.refresh()
-      router.push("/");
+      // Sign in the user automatically
+      const signInResponse = await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password,
+      });
+
+      if (signInResponse?.ok) {
+        router.push("/");
+      } else {
+        console.error("Failed to sign in after registration");
+      }
     } else {
       console.error("Failed to sign up");
     }
