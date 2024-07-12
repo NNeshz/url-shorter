@@ -57,7 +57,7 @@ const DisplayLinks = () => {
                         `${window.location.origin}/${link.shortUrl}`
                       );
                       toast({
-                        description: "Copied to clipboard",
+                        description: "Copied to clipboard :)",
                         duration: 2000,
                         className: "bg-green-500 text-white",
                       })
@@ -84,7 +84,7 @@ const DisplayLinks = () => {
                     onClick={() => {
                       deleteLink(link.id);
                       toast({
-                        description: "Deleted successfully",
+                        description: "Deleted successfully :)",
                         variant: "destructive"
                       })
                     }}
