@@ -26,7 +26,7 @@ const Navbar = async () => {
               })
             )}
           >
-            Sing up <ArrowRight className="w-5" />
+            Sign up <ArrowRight className="w-5" />
           </Link>
         ) : (
           <LogOutButton />
