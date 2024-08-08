@@ -9,15 +9,17 @@ const LogOutButton = () => {
   return (
     <Button
       className={cn(
-        "flex gap-x-2",
+        "absolute top-2 left-2",
         buttonVariants({
           variant: "destructive",
         })
       )}
-      onClick={() => signOut({
-        redirect: true,
-        callbackUrl: `${window.location.origin}/sign-in`
-      })}
+      onClick={() =>
+        signOut({
+          redirect: true,
+          callbackUrl: `${window.location.origin}/sign-in`,
+        })
+      }
     >
       Log out <LogOut />
     </Button>

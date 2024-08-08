@@ -1,3 +1,4 @@
+import LogOutButton from "@/components/LogOutButton";
 import UserLogged from "@/components/UserLogged";
 import UserNotLogged from "@/components/UserNotLogged";
 import { authOptions } from "@/lib/auth";
@@ -17,6 +18,7 @@ const Page = async () => {
         backgroundPosition: "center",
       }}
     >
+      {session ? <LogOutButton /> : null}
       <section className="flex justify-center items-center px-8 md:px-20">
         {session ? <UserLogged /> : <UserNotLogged />}
       </section>
