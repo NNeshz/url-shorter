@@ -61,6 +61,7 @@ const SignUpForm = () => {
 
         if (signInResponse?.ok) {
           router.push("/");
+          router.refresh();
         } else {
           console.error(
             "An error ocurred while sign up: ",

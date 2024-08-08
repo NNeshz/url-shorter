@@ -55,12 +55,12 @@ const SignInForm = () => {
       redirect: false,
     });
 
-    if (singInData?.error) {
-      console.error("Failed to sign in");
-      return;
-    } else {
+    if (singInData?.ok) {
       router.push("/");
       router.refresh();
+    } else {
+      console.error("Failed to sign in");
+      return;
     }
   };
 
