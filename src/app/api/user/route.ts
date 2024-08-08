@@ -4,13 +4,6 @@ import bcrypt from "bcrypt";
 import { z } from "zod";
 
 const registrationSchema = z.object({
-  email: z
-    .string({
-      required_error: "Email is required",
-    })
-    .email({
-      message: "Invalid email format",
-    }),
   password: z.string().min(8, {
     message: "Password must be at least 8 characters long",
   }),
@@ -22,20 +15,7 @@ const registrationSchema = z.object({
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { email, password, username } = registrationSchema.parse(body);
-
-    // Check if email already exists
-    const existingEmail = await db.user.findUnique({
-      where: {
-        email,
-      },
-    });
-    if (existingEmail) {
-      return NextResponse.json(
-        { user: null, message: "Email already exists" },
-        { status: 409 }
-      );
-    }
+    const { password, username } = registrationSchema.parse(body);
 
     // Check if username already exists
     const existingUsername = await db.user.findUnique({
@@ -45,7 +25,7 @@ export async function POST(req: Request) {
     });
     if (existingUsername) {
       return NextResponse.json(
-        { user: null, message: "Username already exists" },
+        { user: null, message: "User is already picked." },
         { status: 409 }
       );
     }
@@ -56,7 +36,6 @@ export async function POST(req: Request) {
     const newUser = await db.user.create({
       data: {
         username,
-        email,
         password: hashedPassword,
       },
     });

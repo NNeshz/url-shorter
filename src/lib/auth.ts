@@ -19,21 +19,19 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "someone@mail.com",
-        },
+        username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials): Promise<{ id: string; username: string; email: string } | null> {
-        if (!credentials?.email || !credentials?.password) {
+      async authorize(
+        credentials
+      ): Promise<{ id: string; username: string } | null> {
+        if (!credentials?.username || !credentials?.password) {
           return null;
         }
 
         const existingUser = await db.user.findUnique({
           where: {
-            email: credentials.email,
+            username: credentials.username,
           },
         });
         if (!existingUser) {
@@ -51,7 +49,6 @@ export const authOptions: NextAuthOptions = {
         return {
           id: `${existingUser.id}`,
           username: `${existingUser.username}`,
-          email: existingUser.email,
         };
       },
     }),
@@ -63,7 +60,6 @@ export const authOptions: NextAuthOptions = {
           ...token,
           id: user.id,
           username: user.username,
-          email: user.email,
         };
       }
       return token;
@@ -75,9 +71,8 @@ export const authOptions: NextAuthOptions = {
           ...session.user,
           id: token.id,
           username: token.username,
-          email: token.email,
         },
       };
     },
-  }
+  },
 };

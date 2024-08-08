@@ -19,9 +19,9 @@ const urlSchema = z.object({
   url: z.string().url(),
 });
 
-const FormLink = ({ isLogged }: { isLogged: boolean }) => {
+const FormLink = () => {
   const router = useRouter();
-  const createShortLink = useLinksStore((state) => state.createShortLink);
+  const { createShortLink, isLoading } = useLinksStore();
   const form = useForm<z.infer<typeof urlSchema>>({
     resolver: zodResolver(urlSchema),
     defaultValues: {
@@ -43,14 +43,9 @@ const FormLink = ({ isLogged }: { isLogged: boolean }) => {
 
   return (
     <Form {...form}>
-      {!isLogged && (
-        <p className="text-red-500 text-sm">
-          You need to be logged in to use Short URL
-        </p>
-      )}
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col items-center gap-2"
+        className="flex flex-col w-full max-w-xl gap-2 md:px-4 mb-4"
       >
         <FormField
           control={form.control}
@@ -58,17 +53,17 @@ const FormLink = ({ isLogged }: { isLogged: boolean }) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input
-                  placeholder="www.example.com"
-                  {...field}
-                  className="md:w-96"
-                />
+                <Input placeholder="www.example.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" disabled={isLogged ? false : true}>
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={isLoading ? true : false}
+        >
           Short
         </Button>
       </form>

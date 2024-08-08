@@ -15,6 +15,7 @@ interface LinksStoreActions {
 export const useLinksStore = create<LinksStore & LinksStoreActions>((set) => ({
   links: [],
   errors: [],
+  isLoading: false,
   createShortLink: async (url) => {
     try {
       const response = await fetch("api/links/post", {
@@ -40,7 +41,6 @@ export const useLinksStore = create<LinksStore & LinksStoreActions>((set) => ({
     }
   },
   getLinks: async () => {
-    // Fetch links from the server
     try {
       const response = await fetch("api/links/get", {
         method: "GET",

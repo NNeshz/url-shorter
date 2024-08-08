@@ -1,18 +1,28 @@
-import FormLink from "@/components/form/FormLink";
-import ListLinks from "@/components/ListLinks";
+import UserLogged from "@/components/UserLogged";
+import UserNotLogged from "@/components/UserNotLogged";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 
 const Page = async () => {
   const session = await getServerSession(authOptions);
 
-  const isLogged = session ? true : false;
+  console.log(session);
 
-  return <div className="w-full h-[86vh] md:h-screen flex flex-col justify-center items-center gap-y-2">
-    <h1 className="text-5xl font-bold">Short Link</h1>
-    <FormLink isLogged={isLogged} /> 
-    <ListLinks />
-  </div>;
+  return (
+    <div
+      className="grid grid-cols-1 md:grid-cols-2 h-screen"
+      style={{
+        backgroundImage: `url('/assets/wallpaper.webp')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <section className="flex justify-center items-center px-8 md:px-20">
+        {session ? <UserLogged /> : <UserNotLogged />}
+      </section>
+      <section className="hidden md:block bg-zinc-950"></section>
+    </div>
+  );
 };
 
 export default Page;

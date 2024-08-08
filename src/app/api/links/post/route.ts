@@ -11,7 +11,7 @@ export async function POST(req: Request) {
 
     const user = await db.user.findUnique({
       where: {
-        email: session?.user.email!,
+        username: session?.user.username!,
       },
     });
     if (!user) {
@@ -32,11 +32,14 @@ export async function POST(req: Request) {
             id: user.id,
           },
         },
-      }
-    })
+      },
+    });
 
     return NextResponse.json({ link: newLink });
   } catch (error) {
-    return NextResponse.json({ message: (error as Error).message }, { status: 500 });
+    return NextResponse.json(
+      { message: (error as Error).message },
+      { status: 500 }
+    );
   }
 }

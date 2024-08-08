@@ -1,12 +1,19 @@
 import SignUpForm from "@/components/form/SignUpForm";
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 
 const Page = () => {
   return (
-    <div className="w-full">
-      <MaxWidthWrapper className="h-screen flex justify-center items-center">
+    <div
+      className="grid grid-cols-1 md:grid-cols-2 h-screen"
+      style={{
+        backgroundImage: `url('/assets/wallpaper.webp')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <section className="flex justify-center items-center px-8 md:px-20">
         <SignUpForm />
-      </MaxWidthWrapper>
+      </section>
+      <section className="hidden md:block bg-zinc-950"></section>
     </div>
   );
 };
