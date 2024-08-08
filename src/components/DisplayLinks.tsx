@@ -18,19 +18,11 @@ import { cn } from "@/lib/utils";
 
 const DisplayLinks = () => {
   const { toast } = useToast();
-  const { getLinks, isLoading, links, deleteLink } = useLinksStore();
+  const { getLinks, links, deleteLink } = useLinksStore();
 
   useEffect(() => {
     getLinks();
   }, []);
-
-  if (isLoading) {
-    return (
-      <>
-        <Loader2 size="2rem" className="spinner" />
-      </>
-    );
-  }
 
   if (links.length === 0) {
     return (

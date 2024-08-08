@@ -21,7 +21,7 @@ const urlSchema = z.object({
 
 const FormLink = () => {
   const router = useRouter();
-  const { createShortLink, isLoading } = useLinksStore();
+  const { createShortLink } = useLinksStore();
   const form = useForm<z.infer<typeof urlSchema>>({
     resolver: zodResolver(urlSchema),
     defaultValues: {
@@ -59,11 +59,7 @@ const FormLink = () => {
             </FormItem>
           )}
         />
-        <Button
-          type="submit"
-          className="w-full"
-          disabled={isLoading ? true : false}
-        >
+        <Button type="submit" className="w-full">
           Short
         </Button>
       </form>
