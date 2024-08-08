@@ -45,7 +45,7 @@ const FormLink = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col w-full max-w-xl gap-2 md:px-4 mb-4"
+        className="flex flex-col w-full max-w-xl gap-2 px-4 md:px-4 mb-4"
       >
         <FormField
           control={form.control}

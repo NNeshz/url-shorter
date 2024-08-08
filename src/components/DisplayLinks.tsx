@@ -34,16 +34,13 @@ const DisplayLinks = () => {
 
   return (
     <div className="md:px-8 backdrop-filter backdrop-blur-lg bg-opacity-10">
-      <Table>
+      <Table className="px-4">
         <TableHeader>
           <TableRow>
             <TableHead>
               <Copy size={24} />
             </TableHead>
             <TableHead>Shorted Link</TableHead>
-            <TableHead className="hidden md:flex items-center ">
-              Original Link
-            </TableHead>
             <TableHead>
               <TrashIcon size={24} />
             </TableHead>
@@ -70,9 +67,6 @@ const DisplayLinks = () => {
               </TableCell>
               <TableCell>
                 {window.location.origin + "/" + link.shortUrl}
-              </TableCell>
-              <TableCell className="hidden md:flex mt-2">
-                {link.originalUrl}
               </TableCell>
               <TableCell>
                 <Button

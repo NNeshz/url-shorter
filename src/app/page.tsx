@@ -11,7 +11,7 @@ const Page = async () => {
 
   return (
     <div
-      className="grid grid-cols-1 md:grid-cols-2 h-screen"
+      className="flex justify-center items-center h-screen"
       style={{
         backgroundImage: `url('/assets/wallpaper.webp')`,
         backgroundSize: "cover",
@@ -22,7 +22,6 @@ const Page = async () => {
       <section className="flex justify-center items-center px-8 md:px-20">
         {session ? <UserLogged /> : <UserNotLogged />}
       </section>
-      <section className="hidden md:block bg-zinc-950"></section>
     </div>
   );
 };

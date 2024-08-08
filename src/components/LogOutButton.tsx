@@ -9,7 +9,7 @@ const LogOutButton = () => {
   return (
     <Button
       className={cn(
-        "absolute top-2 center", // Agrega la clase "center" aquí
+        "absolute top-2 left-2", // Agrega la clase "center" aquí
         buttonVariants({
           variant: "destructive",
         })
