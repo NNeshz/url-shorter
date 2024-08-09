@@ -82,7 +82,7 @@ const SignInForm = () => {
               <FormItem>
                 <FormLabel className="text-white">Username</FormLabel>
                 <FormControl>
-                  <Input placeholder="joserodriguez" {...field} />
+                  <Input placeholder="nneshz" {...field} />
                 </FormControl>
                 <FormDescription>
                   This is your public display name.
@@ -111,17 +111,13 @@ const SignInForm = () => {
 
           <Button
             type="submit"
-            className={cn(
-              buttonVariants({
-                className: "w-full",
-              })
-            )}
+            className="w-full bg-blue-600 border border-white/10 px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(59,130,246,0.5)] ring-2 ring-blue-500/50 transition-all duration-200"
           >
             Sign in
           </Button>
           <p className="text-sm text-center text-zinc-400">
             Don&apos;t have an account?{" "}
-            <Link href="/sign-up" className="text-primary cursor-pointer">
+            <Link href="/sign-up" className="text-pink-500 cursor-pointer">
               Sign up
             </Link>
           </p>

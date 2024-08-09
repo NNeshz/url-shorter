@@ -1,8 +1,7 @@
 import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { getServerSession } from "next-auth";
-import { Button } from "./ui/button";
-import { LogIn, LogOut } from "lucide-react";
+import { LogIn } from "lucide-react";
 import LogOutButton from "./LogOutButton";
 
 const Navbar = async () => {

@@ -121,17 +121,13 @@ const SignUpForm = () => {
 
           <Button
             type="submit"
-            className={cn(
-              buttonVariants({
-                className: "w-full",
-              })
-            )}
+            className="w-full bg-blue-600 border border-white/10 px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(59,130,246,0.5)] ring-2 ring-blue-500/50 transition-all duration-200"
           >
             Create account
           </Button>
           <p className="text-sm text-center text-zinc-400">
             Already have an account?{" "}
-            <Link href="/sign-in" className="text-primary cursor-pointer">
+            <Link href="/sign-in" className="text-pink-500 cursor-pointer">
               Sign in
             </Link>
           </p>
