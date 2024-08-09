@@ -1,16 +1,20 @@
 import React from "react";
 import FormLink from "./form/FormLink";
-import DisplayLinks from "./DisplayLinks";
+import MaxWidthWrapper from "./MaxWidthWrapper";
 
 const UserLogged = () => {
   return (
-    <div className="flex flex-col items-center gap-y-2 text-white backdrop-filter backdrop-blur-sm bg-opacity-10 border border-white/10 md:px-0 py-8 rounded-md">
-      <h1 className="text-6xl font-semibold text-center">Short URL</h1>
-      <p className="text-center text-sm md:px-4 lg:px-10 break-keep">
-        Copy and paste your long URL into the input field and click submit
-      </p>
-      <FormLink />
-      <DisplayLinks />
+    <div className="flex justify-center items-center">
+      <MaxWidthWrapper className="flex flex-col items-center justify-center gap-y-2">
+        <h1 className="text-4xl font-extrabold text-center bg-[radial-gradient(circle,#db2777_0%,#2563eb_100%)] bg-clip-text text-transparent">
+          Shorten Your Looooong Links :)
+        </h1>
+        <p className="text-pretty text-center text-white/80">
+          Linkly is an efficient and easy-to-use URL shortening service that
+          streamlines your online experience.
+        </p>
+        <FormLink isLogged={true} />
+      </MaxWidthWrapper>
     </div>
   );
 };

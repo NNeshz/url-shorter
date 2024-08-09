@@ -1,38 +1,47 @@
 import Link from "next/link";
-import { ArrowRight, LucideLink } from "lucide-react";
-import { getServerSession } from "next-auth";
 import MaxWidthWrapper from "./MaxWidthWrapper";
-import { buttonVariants } from "./ui/button";
-import { cn } from "@/lib/utils";
-import LogOutButton from "./LogOutButton";
-import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { Button } from "./ui/button";
+import { LogIn, LogOut } from "lucide-react";
 
 const Navbar = async () => {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession();
 
   return (
-    <nav className="w-full bg-zinc-100">
-      <MaxWidthWrapper className="flex items-center justify-between py-2">
-        <Link href={"/"} className="flex gap-x-3 font-bold text-xl">
-          <LucideLink className="font-black w-6" /> Short URL
-        </Link>
-        {session === null ? (
+    <div className="fixed w-full">
+      <MaxWidthWrapper>
+        <nav className="flex justify-between items-center w-full py-4">
           <Link
-            href={"/sign-up"}
-            className={cn(
-              "flex gap-x-2",
-              buttonVariants({
-                variant: "default",
-              })
-            )}
+            href={"/"}
+            className="text-2xl font-extrabold bg-gradient-to-r from-pink-600 to-blue-500 bg-clip-text text-transparent"
           >
-            Sign up <ArrowRight className="w-5" />
+            Linkly
           </Link>
-        ) : (
-          <LogOutButton />
-        )}
+          <div>
+            {session ? (
+              <Button className="flex items-center gap-x-1 bg-zinc-900 border border-white/10 px-4 py-2 rounded-full text-white font-semibold hover:bg-red-600">
+                <LogOut size={18} />
+              </Button>
+            ) : (
+              <section className="flex gap-x-4 items-center">
+                <Link
+                  href={"/sign-in"}
+                  className="flex items-center gap-x-1 bg-zinc-900 border border-white/10 px-4 py-2 rounded-full text-white font-semibold"
+                >
+                  Log in <LogIn size={18} />
+                </Link>
+                <Link
+                  href="/sign-up"
+                  className="bg-blue-600 border border-white/10 px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(59,130,246,0.5)] ring-2 ring-blue-500/50 transition-all duration-200"
+                >
+                  Register now
+                </Link>
+              </section>
+            )}
+          </div>
+        </nav>
       </MaxWidthWrapper>
-    </nav>
+    </div>
   );
 };
 
