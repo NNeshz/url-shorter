@@ -1,6 +1,7 @@
 import React from "react";
 import FormLink from "./form/FormLink";
 import MaxWidthWrapper from "./MaxWidthWrapper";
+import DisplayLinks from "./DisplayLinks";
 
 const UserLogged = () => {
   return (
@@ -14,6 +15,7 @@ const UserLogged = () => {
           streamlines your online experience.
         </p>
         <FormLink isLogged={true} />
+        <DisplayLinks />
       </MaxWidthWrapper>
     </div>
   );

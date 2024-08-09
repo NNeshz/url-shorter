@@ -1,19 +1,13 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "./ui/button";
+import { Button } from "./ui/button";
 import { LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
 
 const LogOutButton = () => {
   return (
     <Button
-      className={cn(
-        "absolute top-2 left-2", // Agrega la clase "center" aquí
-        buttonVariants({
-          variant: "destructive",
-        })
-      )}
+      className="flex items-center gap-x-1 bg-zinc-900 border border-white/10 px-4 py-2 rounded-full text-white font-semibold hover:bg-red-600"
       onClick={() =>
         signOut({
           redirect: true,
@@ -21,7 +15,7 @@ const LogOutButton = () => {
         })
       }
     >
-      Log out <LogOut />
+      Log out <LogOut size={18} />
     </Button>
   );
 };

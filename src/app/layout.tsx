@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
+import DotPattern from "@/components/magicui/dot-pattern";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -32,6 +33,11 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Toaster />
+          <DotPattern
+            className={cn(
+              "-z-50 [mask-image:radial-gradient(350px_circle_at_center,white,transparent)] md:[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]"
+            )}
+          />
         </main>
       </body>
     </html>

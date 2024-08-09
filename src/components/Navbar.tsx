@@ -3,6 +3,7 @@ import MaxWidthWrapper from "./MaxWidthWrapper";
 import { getServerSession } from "next-auth";
 import { Button } from "./ui/button";
 import { LogIn, LogOut } from "lucide-react";
+import LogOutButton from "./LogOutButton";
 
 const Navbar = async () => {
   const session = await getServerSession();
@@ -19,9 +20,7 @@ const Navbar = async () => {
           </Link>
           <div>
             {session ? (
-              <Button className="flex items-center gap-x-1 bg-zinc-900 border border-white/10 px-4 py-2 rounded-full text-white font-semibold hover:bg-red-600">
-                <LogOut size={18} />
-              </Button>
+              <LogOutButton />
             ) : (
               <section className="flex gap-x-4 items-center">
                 <Link
