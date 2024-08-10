@@ -1,6 +1,6 @@
 "use client";
 
-import { useLinksStore } from "@/context/useLinksStore";
+import { useLinksStore } from "@/store/useLinksStore";
 import { useEffect } from "react";
 import MobileDisplay from "./MobileDisplay";
 import DesktopDisplay from "./DesktopDisplay";

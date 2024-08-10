@@ -12,7 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useLinksStore } from "@/context/useLinksStore";
+import { useLinksStore } from "@/store/useLinksStore";
 import { useRouter } from "next/navigation";
 import { ArrowRightCircleIcon } from "lucide-react";
 
