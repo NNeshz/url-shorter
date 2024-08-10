@@ -45,8 +45,8 @@ const DesktopDisplay = ({ links }: { links: ILinks[] }) => {
     <div className="w-full text-white flex flex-col justify-center items-center">
       <h2 className="text-2xl font-bold mb-2">Your links</h2>
       {links.length !== 0 ? (
-        <Table className="text-white rounded-lg">
-          <TableHeader>
+        <Table className="text-white">
+          <TableHeader className="rounded-2xl">
             <TableRow>
               <TableHead className="flex items-center justify-center">
                 <Copy size={24} />
@@ -64,7 +64,7 @@ const DesktopDisplay = ({ links }: { links: ILinks[] }) => {
                 <TableCell className="flex items-center justify-center">
                   <Button
                     onClick={() => handleCopy(link.shortUrl)}
-                    className="flex items-center gap-x-1 bg-blue-600 border border-white/10 px-2 py-2 rounded-full text-white font-semibold hover:bg-blue-700"
+                    className="flex items-center gap-x-1 bg-brenverdi border border-brenverdi/80 px-2 py-2 rounded-full text-white font-semibold hover:bg-brenverdi/80"
                   >
                     <Copy />
                   </Button>

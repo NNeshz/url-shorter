@@ -19,6 +19,11 @@ const config = {
     },
     extend: {
       colors: {
+        brenprimary: "#040710",
+        brensecondary: "#1C2541",
+        brenyinmin: "#3A506B",
+        brenverdi: "#5BC0BE",
+        brenaccent: "#6FFFE9",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

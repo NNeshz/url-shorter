@@ -53,7 +53,7 @@ const MobileDisplay = ({ links }: { links: ILinks[] }) => {
               <div className="flex items-center justify-between">
                 <Button
                   onClick={() => handleCopy(link.shortUrl)}
-                  className="flex items-center gap-x-1 bg-blue-600 border border-white/10 px-2 py-2 rounded-full text-white font-semibold hover:bg-blue-700"
+                  className="flex items-center gap-x-1 bg-brenverdi border border-brenverdi/80 px-2 py-2 rounded-full text-white font-semibold hover:bg-brenverdi/80"
                 >
                   <CopyIcon />
                 </Button>

@@ -63,7 +63,7 @@ const FormLink = ({ isLogged }: { isLogged: boolean }) => {
                   <Button
                     type="submit"
                     disabled={!isLogged}
-                    className="bg-blue-700 border border-white/10 px-2 md:px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(59,130,246,0.5)] ring-2 ring-blue-500/50 transition-all duration-200 hover:bg-blue-700 whitespace-nowrap"
+                    className="bg-brenverdi border border-white/10 px-2 md:px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(111,255,233,0.5)] ring-2 ring-brenverdi/50 transition-all duration-200 hover:bg-brenverdi/80 whitespace-nowrap"
                   >
                     {" "}
                     {linkLoading ? (

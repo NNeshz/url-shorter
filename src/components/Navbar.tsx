@@ -13,7 +13,7 @@ const Navbar = async () => {
         <nav className="flex justify-between items-center w-full py-4">
           <Link
             href={"/"}
-            className="text-2xl font-extrabold bg-gradient-to-r from-pink-600 to-blue-500 bg-clip-text text-transparent"
+            className="text-2xl font-extrabold bg-gradient-to-r from-brenaccent to-brensecondary bg-clip-text text-transparent"
           >
             Linkly
           </Link>
@@ -30,7 +30,7 @@ const Navbar = async () => {
                 </Link>
                 <Link
                   href="/sign-up"
-                  className="bg-blue-600 border border-white/10 px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(59,130,246,0.5)] ring-2 ring-blue-500/50 transition-all duration-200"
+                  className="bg-brenverdi border border-brenverdi/80 px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(111,255,233,0.5)] ring-2 ring-brenverdi/80 hover:bg-brenverdi/80 transition-all duration-200"
                 >
                   Register now
                 </Link>

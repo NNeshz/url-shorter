@@ -126,7 +126,7 @@ const SignUpForm = () => {
           <Button
             disabled={authenticatedLoading}
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 border border-white/10 px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(59,130,246,0.5)] ring-2 ring-blue-500/50 transition-all duration-200"
+            className="w-full bg-brenverdi hover:bg-brenverdi/80 border border-brenverdi/80 px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(111,255,233,0.5)] ring-2 ring-brenverdi/80 transition-all duration-200"
           >
             {authenticatedLoading ? (
               <p>
@@ -138,7 +138,7 @@ const SignUpForm = () => {
           </Button>
           <p className="text-sm text-center text-zinc-400">
             Already have an account?{" "}
-            <Link href="/sign-in" className="text-pink-500 cursor-pointer">
+            <Link href="/sign-in" className="text-brenyinmin cursor-pointer">
               Sign in
             </Link>
           </p>
