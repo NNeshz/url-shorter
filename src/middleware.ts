@@ -1,6 +1,6 @@
 export function middleware(request: Request) {
   // Get the cookie
-  console.log(request.headers.get("cookie"));
+  console.log("Hola como estas");
 }
 
 export const config = {

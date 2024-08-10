@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -18,8 +18,9 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { signIn } from "next-auth/react";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useAuthStore } from "@/store/useAuthStore";
+import { Loader2 } from "lucide-react";
 
 const loginSchema = z.object({
   username: z
@@ -40,6 +41,7 @@ const loginSchema = z.object({
 
 const SignInForm = () => {
   const router = useRouter();
+  const { setAuthenticatedLoading, authenticatedLoading } = useAuthStore();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -49,6 +51,7 @@ const SignInForm = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
+    setAuthenticatedLoading(true);
     const singInData = await signIn("credentials", {
       username: data.username,
       password: data.password,
@@ -62,6 +65,7 @@ const SignInForm = () => {
       console.error("Failed to sign in");
       return;
     }
+    setAuthenticatedLoading(false);
   };
 
   return (
@@ -110,10 +114,17 @@ const SignInForm = () => {
           />
 
           <Button
+            disabled={authenticatedLoading}
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 border border-white/10 px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(59,130,246,0.5)] ring-2 ring-blue-500/50 transition-all duration-200"
           >
-            Sign in
+            {authenticatedLoading ? (
+              <p>
+                <Loader2 className="animate-spin" />
+              </p>
+            ) : (
+              <p>Sign in</p>
+            )}
           </Button>
           <p className="text-sm text-center text-zinc-400">
             Don&apos;t have an account?{" "}

@@ -3,6 +3,8 @@ import { Link } from "@/types/types";
 
 interface LinksStore {
   links: Link[];
+  linkLoading: boolean;
+  deleteLoading: boolean;
   errors: string[];
 }
 
@@ -15,8 +17,11 @@ interface LinksStoreActions {
 export const useLinksStore = create<LinksStore & LinksStoreActions>((set) => ({
   links: [],
   errors: [],
+  linkLoading: false,
+  deleteLoading: false,
   createShortLink: async (url) => {
     try {
+      set({ linkLoading: true });
       const response = await fetch("api/links/post", {
         method: "POST",
         headers: {
@@ -32,6 +37,7 @@ export const useLinksStore = create<LinksStore & LinksStoreActions>((set) => ({
         }));
       }
 
+      set({ linkLoading: false });
       return response;
     } catch (error) {
       set((state) => ({
@@ -41,6 +47,7 @@ export const useLinksStore = create<LinksStore & LinksStoreActions>((set) => ({
   },
   getLinks: async () => {
     try {
+      set({ linkLoading: true });
       const response = await fetch("api/links/get", {
         method: "GET",
         headers: {
@@ -52,6 +59,7 @@ export const useLinksStore = create<LinksStore & LinksStoreActions>((set) => ({
         const links = await response.json();
         set({ links });
       }
+      set({ linkLoading: false });
     } catch (error) {
       set((state) => ({
         errors: [...state.errors, "Failed to fetch links"],
@@ -60,6 +68,7 @@ export const useLinksStore = create<LinksStore & LinksStoreActions>((set) => ({
   },
   deleteLink: async (id) => {
     try {
+      set({ deleteLoading: true });
       const response = await fetch("api/links/delete", {
         method: "DELETE",
         headers: {
@@ -73,7 +82,9 @@ export const useLinksStore = create<LinksStore & LinksStoreActions>((set) => ({
           links: state.links.filter((link) => link.id !== id),
         }));
       }
+      set({ deleteLoading: false });
     } catch (error) {
+      console.log(error);
       set((state) => ({
         errors: [...state.errors, "Failed to delete link"],
       }));

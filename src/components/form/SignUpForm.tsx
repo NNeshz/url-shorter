@@ -16,9 +16,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import { useAuthStore } from "@/store/useAuthStore";
+import { Loader2 } from "lucide-react";
 
 const registrationSchema = z.object({
   password: z.string().min(8, {
@@ -31,6 +32,7 @@ const registrationSchema = z.object({
 
 const SignUpForm = () => {
   const router = useRouter();
+  const { setAuthenticatedLoading, authenticatedLoading } = useAuthStore();
   const form = useForm<z.infer<typeof registrationSchema>>({
     resolver: zodResolver(registrationSchema),
     defaultValues: {
@@ -41,6 +43,7 @@ const SignUpForm = () => {
 
   const onSubmit = async (data: z.infer<typeof registrationSchema>) => {
     try {
+      setAuthenticatedLoading(true);
       const response = await fetch("/api/user", {
         method: "POST",
         headers: {
@@ -69,6 +72,7 @@ const SignUpForm = () => {
           );
         }
       }
+      setAuthenticatedLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -120,10 +124,17 @@ const SignUpForm = () => {
           />
 
           <Button
+            disabled={authenticatedLoading}
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 border border-white/10 px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(59,130,246,0.5)] ring-2 ring-blue-500/50 transition-all duration-200"
           >
-            Create account
+            {authenticatedLoading ? (
+              <p>
+                <Loader2 className="animate-spin" />
+              </p>
+            ) : (
+              <p>Sign up</p>
+            )}
           </Button>
           <p className="text-sm text-center text-zinc-400">
             Already have an account?{" "}

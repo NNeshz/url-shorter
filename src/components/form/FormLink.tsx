@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useLinksStore } from "@/store/useLinksStore";
 import { useRouter } from "next/navigation";
-import { ArrowRightCircleIcon } from "lucide-react";
+import { ArrowRightCircleIcon, Loader2 } from "lucide-react";
 
 const urlSchema = z.object({
   url: z.string().url(),
@@ -22,7 +22,8 @@ const urlSchema = z.object({
 
 const FormLink = ({ isLogged }: { isLogged: boolean }) => {
   const router = useRouter();
-  const { createShortLink } = useLinksStore();
+  const { createShortLink, linkLoading } = useLinksStore();
+
   const form = useForm<z.infer<typeof urlSchema>>({
     resolver: zodResolver(urlSchema),
     defaultValues: {
@@ -62,13 +63,21 @@ const FormLink = ({ isLogged }: { isLogged: boolean }) => {
                   <Button
                     type="submit"
                     disabled={!isLogged}
-                    className="bg-blue-700 border border-white/10 px-1 md:px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(59,130,246,0.5)] ring-2 ring-blue-500/50 transition-all duration-200 hover:bg-blue-700 whitespace-nowrap"
+                    className="bg-blue-700 border border-white/10 px-2 md:px-4 py-2 rounded-full text-white font-semibold shadow-[0_0_10px_4px_rgba(59,130,246,0.5)] ring-2 ring-blue-500/50 transition-all duration-200 hover:bg-blue-700 whitespace-nowrap"
                   >
                     {" "}
-                    <p className="hidden md:block">Shorten Now!</p>
-                    <p className="block md:hidden">
-                      <ArrowRightCircleIcon size={30} />
-                    </p>
+                    {linkLoading ? (
+                      <p>
+                        <Loader2 size={24} className="animate-spin" />
+                      </p>
+                    ) : (
+                      <section>
+                        <p className="hidden md:block">Shorten Now!</p>
+                        <p className="block md:hidden">
+                          <ArrowRightCircleIcon size={24} />
+                        </p>
+                      </section>
+                    )}
                   </Button>
                 </div>
               </FormControl>
