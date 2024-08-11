@@ -1,11 +1,13 @@
 import Link from "next/link";
-import MaxWidthWrapper from "./MaxWidthWrapper";
-import { getServerSession } from "next-auth";
 import { LogIn } from "lucide-react";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+
+import MaxWidthWrapper from "./MaxWidthWrapper";
 import LogOutButton from "./LogOutButton";
 
 const Navbar = async () => {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
 
   return (
     <div className="fixed w-full">
