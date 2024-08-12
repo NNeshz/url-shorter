@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Short URL 🔗
 
-## Getting Started
+This project is a URL shortening service built with **Next.js**, **NextAuth.js**, **Zustand**, and **Tailwind CSS**. It allows users to create short, easily shareable links from long URLs, enhancing the efficiency of link management and tracking.
 
-First, run the development server:
+## Key Features 🧩:
+- **Shorten URLs:** Transform lengthy URLs into compact, easy-to-share links.
+- **Authentication:** Secure user accounts with NextAuth.js, providing options for various authentication methods.
+- **State Management:** Utilize Zustand for efficient and scalable state management across the application.
+- **Modern Styling:** Employ Tailwind CSS for responsive and visually appealing design, ensuring a smooth user experience across devices.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack 💻:
+- **Next.js:** Framework for building the application with server-side rendering and static site generation.
+- **NextAuth.js:** Authentication library for managing user sessions and security.
+- **Zustand:** State management library for handling global state with minimal boilerplate.
+- **Tailwind CSS:** Utility-first CSS framework for crafting custom, responsive designs.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The project showcases a robust implementation of modern web technologies to deliver a seamless URL shortening experience with a focus on security, performance, and user interface design.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Demo:
+https://github.com/user-attachments/assets/d60190bc-1c3f-43fd-bd45-14766242290d
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
