@@ -3,12 +3,24 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { db } from "./db";
 import { compare } from "bcrypt";
+import { User } from "next-auth";
+import { JWT } from "next-auth/jwt";
+import { DefaultSession } from "next-auth";
+
+interface IUser extends User {
+  id: string;
+  username: string;
+}
+
+interface ISession extends DefaultSession {
+  user: IUser;
+}
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   session: {
     strategy: "jwt",
-    maxAge: 60 * 60, // 1 hour
+    maxAge: 60 * 60,
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
@@ -23,9 +35,7 @@ export const authOptions: NextAuthOptions = {
         username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(
-        credentials
-      ): Promise<{ id: string; username: string } | null> {
+      async authorize(credentials): Promise<IUser | null> {
         if (!credentials?.username || !credentials?.password) {
           return null;
         }
@@ -47,9 +57,10 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
+        console.log("existingUser", existingUser);
         return {
-          id: `${existingUser.id}`,
-          username: `${existingUser.username}`,
+          id: existingUser.id,
+          username: existingUser.username as string,
         };
       },
     }),
@@ -57,32 +68,20 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        return {
-          ...token,
-          id: user.id,
-          username: user.username,
-        };
+        token.id = user.id;
+        token.username = user.username;
       }
-      return token;
+      return token as JWT & IUser;
     },
-    async session({ session, token }) {
+    async session({ session, token }): Promise<ISession> {
       return {
         ...session,
         user: {
           ...session.user,
-          id: token.id,
-          username: token.username,
+          id: token.id as string,
+          username: token.username as string,
         },
       };
-    },
-  },
-  cookies: {
-    sessionToken: {
-      name: "url-session-token",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-      },
     },
   },
 };
